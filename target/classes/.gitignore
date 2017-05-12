@@ -2,3 +2,6 @@
 .target
 .classpath
 .project
+.maven-archiver
+.surefire-reports
+.maven status

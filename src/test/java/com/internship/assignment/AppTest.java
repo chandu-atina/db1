@@ -66,7 +66,12 @@ public class AppTest extends TestCase
     	{
     c.close();
 	stmt.close();
+	
     }
+   public static void main(String[] args)
+   {
+	   
+   }
   }}
 	
 

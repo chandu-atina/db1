@@ -1,29 +1,28 @@
 package com.internship.assignment;
 import java.sql.*;
 import java.util.*;
-public class App
+public class App1
 {
-
+private static Scanner sc;
 public static void main(String args[])throws Exception
 {
 		int ch = 0;
 		boolean flag=true;
-		Scanner sc=new Scanner(System.in);
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "admin");
 			do
 			{
-			System.out.println("enter 1 for query 1,enter two for query 2,enter 3 for query 3,enter 4 for query 4");
-		ch=Integer.parseInt(sc.nextLine());
+			System.out.println("enter 1 for query 1/tenter two for query 2/tenter 3 for query 3/tenter 4 for query 4/n");
+			sc = new Scanner(System.in);
        switch (ch)
 			{
 			case 1 :
 			try
 			{
-				Statement stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from emp order by salary desc limit 5");
+				Statement stmt1 = c.createStatement();
+			ResultSet rs = stmt1.executeQuery("select * from emp order by salary desc limit 5");
 			System.out.println("-----query 1----");
 			while (rs.next())
 			{
@@ -42,7 +41,8 @@ public static void main(String args[])throws Exception
 			try
 			{
 				Statement stmt = c.createStatement();
-			ResultSet rs1 = stmt.executeQuery("select * from emp group by designation order by joining_date desc limit 5");
+			
+			ResultSet rs1 = stmt.executeQuery("select * from emp group by joining_date desc,designation desc limit 1");
 			System.out.println("-----query 2----");
 			while (rs1.next())
 			{
@@ -89,7 +89,7 @@ public static void main(String args[])throws Exception
 		}
 			break;
 			}
-			System.out.println("do you want to continue?(y/n)");
+			System.out.println("do you want to continue?(y/n");
 		String str=sc.nextLine();
 	 if(str.equals("y"))
 		 flag=true;
@@ -103,4 +103,3 @@ while(flag);
 			System.out.println("executed");
 		}
 }}
-

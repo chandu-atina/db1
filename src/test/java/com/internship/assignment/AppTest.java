@@ -1,77 +1,60 @@
 package com.internship.assignment;
-import java.sql.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import junit.framework.*;
-public class AppTest extends TestCase
+
+/**
+ * Test Class to test whether App prints
+ * the appropriate results based on input
+ */
+public class AppTest 
 {
-	Connection c;
-	Statement stmt;
-	protected void setUp() throws Exception
-	{
-		try
-	{
-		Class.forName("com.mysql.jdbc.Driver");
-	 c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "admin");
-	 stmt=c.createStatement();
-	}
-	catch(Exception e)
-	{
-		System.out.println(e);
-	}
-	}
-   
-  public class JunitTest
-  {
-	   @Test 
-    public void testApp()
-    {
-    	try
-    	{
-    	ResultSet rs = stmt.executeQuery("select * from emp order by salary desc limit 5");
-    	Assert.assertNotNull(rs);
-    	
-    	ResultSet rs1 = stmt.executeQuery("select * from emp group by designation order by joining_date desc limit 5");
-    	Assert.assertNotNull(rs1);
-    	
-    	ResultSet rs2 = stmt.executeQuery(" select * from emp group by designation order by business_unit; ");
-    	Assert.assertNotNull(rs2);
-    	
-    	ResultSet rs3 = stmt.executeQuery(" select * from emp group by designation order by joining_date desc limit 5 ");
-    	Assert.assertNotNull(rs3);
-    	
-     }
-    	catch(Exception e)
-    	{
-    		System.out.println(e);
-    	}
-    	
-  }
-	   public class JUnitTest1
-	   {
-		   @Test
-		   public void testApp()
-		   {
-			   System.out.println("executed");
-		   }
-	   }
-	  
-	   
-  @RunWith(Suite.class)
-  @Suite.SuiteClasses({JunitTest.class,JUnitTest1.class})
-  
-  public class JunitTestSuite{  }
-   protected void tearDown()throws Exception
-    	{
-    c.close();
-	stmt.close();
 	
-    }
-   public static void main(String[] args)
-   {
-	   
-   }
-  }}
+	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+	PrintStream stdout = System.out;
+	PrintStream stderr = System.err;
+
+	/**
+	 * Setting custom streams instead of standard input and output streams
+	 */
+	@Before
+	public void customStreams() {
+	    System.setOut(new PrintStream(outContent));
+	    System.setErr(new PrintStream(errContent));
+	}
+
+	/**
+	 * Revert back to standard input and output streams
+	 */
+	@After
+	public void revertStreams() {
+	    System.setOut(stdout);
+	    System.setErr(stderr);
+	}
+
+	/**
+	 * Constructs sample input for App's main method and verify
+	 * the results printed to System.out
+	 */
+	@Test
+	public void testMain() throws Exception {
+		
+		/* Tweaking System.in with sample data input, rather than reading it from standard System.in */
+		String data = "1\r\nn\r\n";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		
+		App.main(null);
+		
+		//TODO change the character sequence inside .contains() to match with expected output
+		Assert.assertEquals(true, outContent.toString().contains("executed"));
+	}
+
+}
 	
 

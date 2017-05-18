@@ -14,7 +14,7 @@ public class App {
 		Scanner sc = new Scanner(System.in);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "admin");
 			do {
 				System.out.println("enter 1 for query 1,enter two for query 2,enter 3 for query 3,enter 4 for query 4");
 				ch = Integer.parseInt(sc.nextLine());

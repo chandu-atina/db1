@@ -52,7 +52,7 @@ public class App {
 					try {
 						Statement stmt = c.createStatement();
 						ResultSet rs2 = stmt
-								.executeQuery(" select * from emp group by designation order by business_unit; ");
+								.executeQuery(" select * from emp order by salary desc limit 5; ");
 						System.out.println("-----query 3----");
 						while (rs2.next()) {
 							// System.out.println(rs2.getInt(1));

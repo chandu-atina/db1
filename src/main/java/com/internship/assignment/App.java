@@ -38,7 +38,7 @@ public class App {
 					try {
 						Statement stmt = c.createStatement();
 						ResultSet rs1 = stmt.executeQuery(
-								"select * from emp group by designation order by joining_date desc limit 5");
+								"select * from emp order by salary desc limit 5");
 						System.out.println("-----query 2----");
 						while (rs1.next()) {
 							System.out.println(rs1.getInt(1) + "   " + rs1.getString(2) + "   " + rs1.getString(3)
@@ -67,7 +67,7 @@ public class App {
 					try {
 						Statement stmt = c.createStatement();
 						ResultSet rs3 = stmt.executeQuery(
-								" select * from emp group by designation order by joining_date desc limit 5 ");
+								"select * from emp order by salary desc limit 5");
 						System.out.println("-----query 4----");
 						while (rs3.next()) {
 							System.out.println(rs3.getInt(1) + "   " + rs3.getString(2) + "   " + rs3.getString(3)

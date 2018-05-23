@@ -46,7 +46,7 @@ public class AppTest
 	public void testMain() throws Exception {
 		
 		/* Tweaking System.in with sample data input, rather than reading it from standard System.in */
-		String data = "1\r\ny\r\n2\r\ny\r\n3\r\nn\r\n";
+		String data = "1\r\ny\r\n2\r\ny\r\n3\r\ny\r\n4\r\nn\r\n";
 		System.setIn(new ByteArrayInputStream(data.getBytes()));
 		
 		App.main(new String[0]);
